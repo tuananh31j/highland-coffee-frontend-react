@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/client/Home";
-import Profile from "./pages/client/Profile";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import LoginPage from "./pages/client/Login";
+import LayoutMain from "./layouts/MainLayout";
+import { routesClient, routesAdmin } from "./routes";
+import NotFound from "./pages/NotFound";
+import LayoutAdmin from "./layouts/AdminLayout";
+import PrivateRoutes from "./layouts/AdminLayout/privateRoutes";
 
 
 
@@ -14,16 +14,25 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={(
-              <>
-                <Header />
-              <HomePage />
-              <Footer />
-              </>
-            )}></Route>
-            <Route path="/profile" element={< Profile />}></Route>
-            <Route path="/login" element={<LoginPage/>}></Route>
+          <Route path="/" element={<LayoutMain />}>
+            {routesClient.map((router, index) => {
+                  const Page = router.component;
+                  return <Route key={index} path={router.path} element={<Page />} />
+              })}
+          </Route>
+           
+
+          <Route path="admin" element={<PrivateRoutes> <LayoutAdmin /> </PrivateRoutes>}>
+            {routesAdmin.map((router, index) => {
+                  const Page = router.component;
+                  return <Route key={index} path={router.path} element={<Page />} />
+              })}
+          </Route>
+
+          <Route path="*" element={<NotFound/>}></Route>
         </Routes>
+
+       
     </BrowserRouter>
   )
 }

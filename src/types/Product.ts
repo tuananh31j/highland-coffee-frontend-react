@@ -1,9 +1,20 @@
-
+import Category from "./Category";
   
-export type Product = {
-    title: string;
+interface Product {
+    name: string;
     price: number;
-    image: string;
+    view:number;
+    img: string | (File | undefined)[] | undefined;
+    category_id:Category | string,
+    des: string;
+    sale: number;
+    updateAt: string;
+    createAt:string;
+    _id:string,
+    __v?:number | string;
+    curPrice?: string | number;
 }
 
 
+
+export default Product

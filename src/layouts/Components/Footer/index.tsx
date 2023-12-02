@@ -1,16 +1,16 @@
-
+import { memo } from "react"
 
 const Footer =() => {
 
     return (
-        <footer className="my-11 px-10">
+        <footer className="mt-11 py-4 px-10 bg-slate-900 text-white">
       
         <div className="flex justify-between my-4 container">
             <div className="w-60 leading-7">
                 <h2 className="font-semibold mb-3">HAI LẦN COFFEE CPG</h2>
                 <p className="">Hai Lần coffee là dự án của sinh viên trường cao đẳng thực hành FPT
                     polytechnic</p>
-                <img className="mt-3" src="/logoTab.png" alt=""/>
+                <img className="mt-3 w-20" src="/logoTab.png" alt=""/>
             </div>
 
             <div className="w-60 leading-7">
@@ -65,4 +65,4 @@ const Footer =() => {
     )
 }
 
-export default Footer
+export default memo(Footer)

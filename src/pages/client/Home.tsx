@@ -1,24 +1,26 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Product } from "../../types/Product";
-import ProductCard from "../../components/Product/card";
-
+import  Product from "../../types/Product";
+import ProductCard from "../../components/Product/Card";
+import fetch from "../../utilities/api";
 const HomePage = () => {
     const [productsList, setProductsList] = useState<Product[]>([])
     const getProducts = () => {
-        axios.get("https://fakestoreapi.com/products")
-        .then(({data: pros}) => setProductsList(pros))
-        .catch(err => console.log(err))
+        fetch.getAll("products?_limit=8")
+        .then(({data}:{data:Product[]}) => {
+            
+            setProductsList(data)
+            console.log( localStorage.getItem("user"));
+        })
     }
 
     useEffect(() => {
         getProducts()
     },[])
-    return <div className="">
+    return <div className="px-5">
         <div>
                 <img src="/bn.jpg" className="w-full h-[500px] object-contain" alt=""/>
             </div>
-    <div className="flex  justify-between px-5 my-5">
+    <div className="flex  justify-between  my-5">
         <div className="text-center w-56">
             <img className="mx-auto my-4" src="/tietkiem.jpg" alt="" />
             <h4 className="font-semibold text-xl">Mua hàng siêu
@@ -50,8 +52,9 @@ const HomePage = () => {
             </p>
         </div>
     </div>
+    <h1 className="text-2xl font-bold my-10">Sản phẩm của chúng tôi:</h1>
+
         <div className="grid grid-cols-4 gap-5 text-center container">
-        
         {productsList.map((item, i) => (
             <ProductCard key={i} product={item} />
             
