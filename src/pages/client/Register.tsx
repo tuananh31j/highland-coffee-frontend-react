@@ -25,7 +25,7 @@ const RegisterPage = () => {
             await swal("Đăng ký thành công!", "Đăng nhập ngay!", "success");
             navigate('/login')
 
-        } catch ({ response }: { response: unknown | object }) {
+        } catch ({ response }: { response: any }) {
             const message = response.data.message;
             console.log(response);
             setErr(message)
