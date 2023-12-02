@@ -33,7 +33,7 @@ const ListProducts = () => {
       const data = await getProList();
       setProducts(data);
     })();
-  });
+  }, []);
 
   return (
     <>
