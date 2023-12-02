@@ -4,6 +4,7 @@ import { FormRegister } from "../../types/Auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { AxiosError } from "axios";
 
 type ErrMessage = {
     email: string;
@@ -25,10 +26,13 @@ const RegisterPage = () => {
             await swal("Đăng ký thành công!", "Đăng nhập ngay!", "success");
             navigate('/login')
 
-        } catch ({ response }: { response: any }) {
-            const message = response.data.message;
-            console.log(response);
-            setErr(message)
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                const message = error.response?.data.message;
+                setErr(message)
+            }
+
+
         }
     }
     return (

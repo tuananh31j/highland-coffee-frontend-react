@@ -3,6 +3,7 @@ import { FormLogin } from '../../types/Auth';
 import fetch from '../../utilities/api';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormLogin>();
@@ -17,10 +18,13 @@ const LoginPage = () => {
             navigate('/')
             window.location.reload()
 
-        } catch ({ response }: { response: any}) {
-            const message = response.data.message;
-            console.log(response);
-            setErr(message)
+        } catch (error) {
+            if (error instanceof AxiosError) {
+
+                const message = error.response?.data.message;
+                setErr(message)
+            }
+
 
         }
     }
