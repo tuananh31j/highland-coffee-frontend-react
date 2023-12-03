@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "../../types/Product";
 import ProductCard from "@/components/Product/Card";
 import fetch from "../../utilities/api";
+
 const HomePage = () => {
     const [productsList, setProductsList] = useState<Product[]>([])
     const getProducts = () => {
