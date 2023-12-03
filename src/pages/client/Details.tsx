@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Product from "../../types/Product";
 import { useParams } from "react-router-dom";
 import fetch from "../../utilities/api";
-import ProductCard from "@/components/Product/Card";
+import ProductCard from "@/components";
+
 
 
 

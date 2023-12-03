@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "../../types/Product";
-import ProductCard from "@/components/Product/Card";
+import ProductCard from "@/components";
 import fetch from "../../utilities/api";
 
 const HomePage = () => {
